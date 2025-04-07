@@ -16,7 +16,7 @@ std::string get_cached_input(const Config& config, int year, int day) {
 }
 
 void cache_input(const Config& config, int year, int day, const std::string& input) {
-        fs::path input_file = config.inputs_dir / (std::to_string(year) + "_" + std::to_string(day) + ".text");
+        fs::path input_file = config.inputs_dir / (std::to_string(year) + "_" + std::to_string(day) + ".txt");
         std::ofstream file(input_file);
         file << input;
 }

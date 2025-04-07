@@ -61,7 +61,7 @@ void store_cookie(const Config& config, const std::string& cookie) {
 }
 
 std::string get_cookie(const Config& config) {
-    if (!is_cookie_valid(config)) {
+    if (!fs::exists(config.cookie_file) || !is_cookie_valid(config)) {
         std::cout << "Cookie not found or expired. Please enter your Advent of Code session cookie: ";
         std::string cookie;
         std::getline(std::cin, cookie);
@@ -74,7 +74,7 @@ std::string get_cookie(const Config& config) {
         return cookie;
     }
 
-    std::ifstream cookie_file(config.cookie_file, std::ios::binary);
+    std::ifstream cookie_file(config.cookie_file);
     std::string cookie;
     std::getline(cookie_file, cookie);
     // Trim any potential whitespace
