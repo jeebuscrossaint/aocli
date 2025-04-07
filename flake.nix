@@ -2,7 +2,7 @@
   description = "Advent of Code CLI in C++";
 
   inputs = {
-    nixpkgs.url = "github:nixpkgs/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     utils.url = "github:numtide/flake-utils";
   };
 
@@ -25,11 +25,13 @@
           buildInputs = with pkgs; [
             curl
             gumbo
+            clang
           ];
 
           buildPhase = ''
             cd cli
             make
+            strip build/bin/aocli
           '';
 
           installPhase = ''
